@@ -30,7 +30,7 @@ vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start)
     {
         g.addedge(i[0]-1,i[1]-1,i[2]);
     }
-    vector<bool> rem(n,false);
+    vector<bool> removed(n,false);
     vector<int> dist(n,-1);
     int z=n;
     auto cmp = [](pair<int,int>& a, pair<int,int>& b) {
@@ -42,9 +42,9 @@ vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start)
     while ((!pq.empty())&&(z)) {
         pair<int,int> k=pq.top();
         pq.pop();
-        if(!rem[k.first]) {
+        if(!removed[k.first]) {
             z--;
-            rem[k.first]=true;
+            removed[k.first]=true;
             for(pair<int,int> i:g.adj(k.first)) {
                 if(dist[i.first]!=-1) {
                     if(k.second+i.second<dist[i.first]) {
