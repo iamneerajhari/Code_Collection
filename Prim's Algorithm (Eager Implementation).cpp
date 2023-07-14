@@ -1,3 +1,9 @@
+//Note: I beleive there could be a better implementation, especially when it comes to updating the priority queue. I might update this code in the future.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//For comparing the elements in the priority queue used for the implementation of Prim's algorithm
 class Compare
  {
      public:
@@ -20,6 +26,7 @@ class Graph
     void addedge(int a, int b, int c)
     {
         gp[a].push_back(make_pair(b,c));
+					   gp[a].push_back(make_pair(b,c));
     }
     vector<pair<int,int>> adj(int v)
     {
@@ -27,13 +34,13 @@ class Graph
     }
 };
 
+//Returns the minimum weight to connect all nodes in the graph
 int prims(int n, vector<vector<int>> edges, int start)
 {
     Graph g(n);
     for(vector<int> i:edges)
     {
         g.addedge(i[0]-1,i[1]-1,i[2]);
-        g.addedge(i[1]-1,i[0]-1,i[2]);
     }
     int sum=0;
     vector<bool> tmark(n, false);
