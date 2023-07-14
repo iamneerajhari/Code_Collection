@@ -26,7 +26,7 @@ class Graph
     void addedge(int a, int b, int c)
     {
         gp[a].push_back(make_pair(b,c));
-					   gp[a].push_back(make_pair(b,c));
+	gp[a].push_back(make_pair(b,c));
     }
     vector<pair<int,int>> adj(int v)
     {
