@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Adjecency list representation of an undirected graph
 class Graph
 {
     int n;
@@ -23,19 +24,23 @@ class Graph
     }
 };
 
-vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start)
+//Function to calculate the shortest path and return the distance to each vertex from the starting vertex
+vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start) 
 {
     Graph g(n);
+    //Creating the graph from the vector of vectors with each vector containing the two vertices and the weight of the edge between them
     for(auto i:edges)
     {
         g.addedge(i[0]-1,i[1]-1,i[2]);
     }
     vector<bool> removed(n,false);
     vector<int> dist(n,-1);
+    //z variable to keep track of the number of vertices removed from the priority queue
     int z=n;
     auto cmp = [](pair<int,int>& a, pair<int,int>& b) {
         return a.second>b.second;
     };
+    //Defining a priority queue of pairs with each pair containing the vertex and its assisgned weight at that step
     priority_queue<pair<int,int>,vector<pair<int,int>>,decltype(cmp)> pq(cmp);
     dist[start-1]=0;
     pq.push(make_pair(start-1,0));
@@ -46,23 +51,18 @@ vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start)
             z--;
             removed[k.first]=true;
             for(pair<int,int> i:g.adj(k.first)) {
-                if(dist[i.first]!=-1) {
+                if(dist[i.first]!=-1) {    //If the vertex had previously been updated
                     if(k.second+i.second<dist[i.first]) {
                         dist[i.first]=k.second+i.second;
                         pq.push(make_pair(i.first,k.second+i.second));
                     }
                 }
-                else {
+                else {    //If the vertex has never been updated
                     dist[i.first]=k.second+i.second;
                     pq.push(make_pair(i.first,k.second+i.second));
                 }
             }
         }
     }
-    for(int h=start-1;h<n-1;h++)
-    {
-        dist[h]=dist[h+1];
-    }
-    dist.pop_back();
     return dist;
 }
