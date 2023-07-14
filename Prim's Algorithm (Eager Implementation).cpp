@@ -1,4 +1,4 @@
-//Note: I beleive there could be a better implementation, especially when it comes to updating the priority queue. I might update this code in the future.
+//Note: I beleive that there could be a better implementation, especially when it comes to updating the priority queue. I might update this code in the future.
 
 #include <bits/stdc++.h>
 using namespace std;
