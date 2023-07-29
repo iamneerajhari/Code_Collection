@@ -2,34 +2,28 @@
 using namespace std;
 
 //Adjecency list representation of an undirected graph
-class Graph
-{
+class Graph {
     int n;
     vector<vector<pair<int,int>>> gp;
     public:
-    Graph(int n)
-    {
+    Graph(int n) {
         this->n=n;
         gp.resize(n);
     }
-    void addedge(int a, int b, int w)
-    {
+    void addedge(int a, int b, int w) {
         gp[a].push_back(make_pair(b,w));
         gp[b].push_back(make_pair(a,w));
     }
-    vector<pair<int,int>> adj(int c)
-    {
+    vector<pair<int,int>> adj(int c) {
         return gp[c];
     }
 };
 
 //Function to calculate the shortest path and return the distance to each vertex from the starting vertex
-vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start) 
-{
+vector<int> DijkstraShortestPath(int n, vector<vector<int>> edges, int start) {
     Graph g(n);
     //Creating the graph from the vector of vectors with each vector containing the two vertices and the weight of the edge between them
-    for(auto i:edges)
-    {
+    for(auto i:edges) {
         g.addedge(i[0]-1,i[1]-1,i[2]);
     }
     vector<bool> removed(n,false);
