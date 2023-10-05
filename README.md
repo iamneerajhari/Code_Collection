@@ -1,2 +1,2 @@
 # Graph-Algorithms-in-CPP-
-This repository contains the C++ implementations of some of the famous graph algorithms. I have used the adjacency list representation of graphs.
+This repository contains the C++ implementations of some of the well-known graph algorithms using the adjacency list representation of graphs.
